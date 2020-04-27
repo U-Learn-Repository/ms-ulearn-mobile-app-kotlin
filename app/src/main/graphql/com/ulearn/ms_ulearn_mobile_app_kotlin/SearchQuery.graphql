@@ -1,0 +1,6 @@
+query SearchQuery($id: String!) {
+    SearchQuestion(id: $id) {
+        statement
+        score
+    }
+}
