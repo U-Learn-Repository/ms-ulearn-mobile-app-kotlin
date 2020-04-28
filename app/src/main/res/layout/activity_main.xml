@@ -34,4 +34,20 @@
         app:layout_constraintEnd_toEndOf="@+id/txt_id_quiz"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="@+id/txt_id_quiz" />
+
+    <Button
+        android:id="@+id/btn_go_quiz"
+        android:layout_width="283dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="74dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
+        android:layout_marginBottom="137dp"
+        android:text="Resolver Quiz"
+        app:layout_constraintBottom_toTopOf="@+id/txt_id_quiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
