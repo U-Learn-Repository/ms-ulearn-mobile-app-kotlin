@@ -10,7 +10,7 @@
 
     <TextView
 
-        android:id="@+id/textView"
+        android:id="@+id/statement"
         android:layout_width="348dp"
         android:layout_height="103dp"
         android:layout_marginStart="30dp"
@@ -21,7 +21,8 @@
         android:layout_marginBottom="559dp"
         android:background="#FF6100"
         android:fontFamily="sans-serif-medium"
-        android:text="¿Qué expresa esta formula? e = mc²"
+        android:gravity="center"
+        android:text="Not Found :("
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         android:textSize="34dp"
@@ -32,9 +33,7 @@
         app:layout_constraintHorizontal_bias="0.166"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:gravity="center"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -58,7 +57,7 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/answer_1"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginStart="20dp"
@@ -67,16 +66,15 @@
         android:layout_marginEnd="33dp"
         android:layout_marginRight="33dp"
         android:layout_marginBottom="10dp"
-        android:text="Circunferencia de un círculo"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:background="#FFFFFF"
+        android:text="Not Found"
+        app:layout_constraintBottom_toTopOf="@+id/answer_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        android:background="#FFFFFF"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/statement" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/answer_2"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginStart="15dp"
@@ -85,17 +83,16 @@
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="10dp"
-        android:text="La teoría de la probabilidad"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:background="#FFFFFF"
+        android:text="Not Found"
+        app:layout_constraintBottom_toTopOf="@+id/answer_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        android:background="#FFFFFF"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/answer_1" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/answer_3"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginStart="15dp"
@@ -104,16 +101,15 @@
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="10dp"
-        android:text="Equivalencia entre masa y energía"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        android:background="#FFFFFF"
+        android:text="Not Found"
+        app:layout_constraintBottom_toTopOf="@+id/answer_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        android:background="#FFFFFF"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/answer_2" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/answer_4"
         android:layout_width="358dp"
         android:layout_height="71dp"
         android:layout_marginStart="15dp"
@@ -122,11 +118,10 @@
         android:layout_marginEnd="38dp"
         android:layout_marginRight="38dp"
         android:layout_marginBottom="44dp"
-        android:text="Equivalencia entre masa y energía"
+        android:background="#FFFFFF"
+        android:text="Not Found"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3"
-        android:background="#FFFFFF"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/answer_3" />
 </androidx.constraintlayout.widget.ConstraintLayout>
