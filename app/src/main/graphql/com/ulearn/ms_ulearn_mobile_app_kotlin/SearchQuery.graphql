@@ -4,6 +4,7 @@ query SearchQuery($id: String!) {
         score
         answers {
             context
+            is_correct
         }
     }
 }
