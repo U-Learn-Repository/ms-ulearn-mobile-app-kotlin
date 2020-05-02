@@ -14,6 +14,8 @@ import kotlinx.android.synthetic.main.activity_quizzes.*
 
 class ActivityQuizzes : AppCompatActivity() {
 
+    var hm : HashMap<String, Boolean?> = HashMap<String, Boolean?> ()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quizzes)
@@ -23,18 +25,57 @@ class ActivityQuizzes : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://192.168.0.9:5000/api/graphql")
+            .serverUrl("http://127.0.0.1:5000/api/graphql")
             .build()
 
 
-        answer_1.setOnClickListener {answer_1.setBackgroundColor(Color.RED)}
-        answer_2.setOnClickListener {answer_2.setBackgroundColor(Color.RED)}
-        answer_3.setOnClickListener {answer_3.setBackgroundColor(Color.RED)}
-        answer_4.setOnClickListener {answer_4.setBackgroundColor(Color.GREEN)}
+        answer_1.setOnClickListener {
+            clearButton();
+            var value = hm.get(answer_1.text.toString());
+
+            if(value == true) {
+                answer_1.setBackgroundColor(Color.GREEN);
+            } else {
+                answer_1.setBackgroundColor(Color.RED);
+            }
+
+        }
+        answer_2.setOnClickListener {
+            clearButton();
+            var value = hm.get(answer_2.text.toString());
+
+            if(value == true) {
+                answer_2.setBackgroundColor(Color.GREEN);
+            } else {
+                answer_2.setBackgroundColor(Color.RED);
+            }
+        }
+
+        answer_3.setOnClickListener {
+            clearButton();
+            var value = hm.get(answer_3.text.toString());
+
+            if(value == true) {
+                answer_3.setBackgroundColor(Color.GREEN);
+            } else {
+                answer_3.setBackgroundColor(Color.RED);
+            }
+        }
+
+        answer_4.setOnClickListener {
+            clearButton();
+            var value = hm.get(answer_4.text.toString());
+
+            if(value == true) {
+                answer_4.setBackgroundColor(Color.GREEN);
+            } else {
+                answer_4.setBackgroundColor(Color.RED);
+            }
+        }
 
 
         apolloClient.query(
-            SearchQuery.builder().id("5ea8bae0638f782b5207f5b0").build()
+            SearchQuery.builder().id("5eab0281fe7b80a0896249c8").build()
         ).enqueue(
             object: ApolloCall.Callback<SearchQuery.Data>() {
                 override fun onFailure(e: ApolloException) {
@@ -47,11 +88,25 @@ class ActivityQuizzes : AppCompatActivity() {
                     statement.text = response.data()?.SearchQuestion?.statement.toString();
 
                     answer_1.text = response.data()?.SearchQuestion?.answers?.get(0)?.context.toString();
+                    hm.put(answer_1.text.toString(), response.data()?.SearchQuestion?.answers?.get(0)?.is_correct);
+
                     answer_2.text = response.data()?.SearchQuestion?.answers?.get(1)?.context.toString();
+                    hm.put(answer_2.text.toString(), response.data()?.SearchQuestion?.answers?.get(1)?.is_correct);
+
                     answer_3.text = response.data()?.SearchQuestion?.answers?.get(2)?.context.toString();
+                    hm.put(answer_3.text.toString(), response.data()?.SearchQuestion?.answers?.get(2)?.is_correct);
+
                     answer_4.text = response.data()?.SearchQuestion?.answers?.get(3)?.context.toString();
+                    hm.put(answer_4.text.toString(), response.data()?.SearchQuestion?.answers?.get(3)?.is_correct);
                 }
             }
         )
+    }
+
+    fun clearButton() {
+        answer_1.setBackgroundColor(Color.WHITE);
+        answer_2.setBackgroundColor(Color.WHITE);
+        answer_3.setBackgroundColor(Color.WHITE);
+        answer_4.setBackgroundColor(Color.WHITE);
     }
 }
