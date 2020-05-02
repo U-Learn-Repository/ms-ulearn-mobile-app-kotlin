@@ -24,7 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun goQuizzes() {
-        val intent = Intent(this, ActivityQuizzes::class.java);
+        // val intent = Intent(this, ActivityQuizzes::class.java);
+        val intent = Intent(this, ActivityListQuizzes::class.java)
         startActivity(intent);
     }
 }

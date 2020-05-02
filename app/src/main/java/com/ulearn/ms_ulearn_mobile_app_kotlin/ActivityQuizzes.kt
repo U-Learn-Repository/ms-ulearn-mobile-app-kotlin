@@ -38,7 +38,7 @@ class ActivityQuizzes : AppCompatActivity() {
             } else {
                 answer_1.setBackgroundColor(Color.RED);
             }
-
+            disable();
         }
         answer_2.setOnClickListener {
             clearButton();
@@ -49,6 +49,7 @@ class ActivityQuizzes : AppCompatActivity() {
             } else {
                 answer_2.setBackgroundColor(Color.RED);
             }
+            disable();
         }
 
         answer_3.setOnClickListener {
@@ -60,6 +61,7 @@ class ActivityQuizzes : AppCompatActivity() {
             } else {
                 answer_3.setBackgroundColor(Color.RED);
             }
+            disable();
         }
 
         answer_4.setOnClickListener {
@@ -71,6 +73,7 @@ class ActivityQuizzes : AppCompatActivity() {
             } else {
                 answer_4.setBackgroundColor(Color.RED);
             }
+            disable();
         }
 
 
@@ -108,5 +111,16 @@ class ActivityQuizzes : AppCompatActivity() {
         answer_2.setBackgroundColor(Color.WHITE);
         answer_3.setBackgroundColor(Color.WHITE);
         answer_4.setBackgroundColor(Color.WHITE);
+    }
+
+    fun disable() {
+        answer_1.isEnabled = false
+        answer_1.isClickable = false
+        answer_2.isEnabled = false
+        answer_2.isClickable = false
+        answer_3.isEnabled = false
+        answer_3.isClickable = false
+        answer_4.isEnabled = false
+        answer_4.isClickable = false
     }
 }
