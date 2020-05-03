@@ -8,3 +8,14 @@ query SearchQuery($id: String!) {
         }
     }
 }
+
+query SearchQuestions {
+    SearchQuestions {
+        statement
+        score
+        answers {
+            context
+            is_correct
+        }
+    }
+}

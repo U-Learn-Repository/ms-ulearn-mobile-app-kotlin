@@ -1,5 +1,6 @@
 package com.ulearn.ms_ulearn_mobile_app_kotlin
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,40 +9,77 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.view.get
+import com.apollographql.apollo.ApolloCall
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.api.Response
+import com.apollographql.apollo.exception.ApolloException
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_list_quizzes.*
-
+import kotlinx.android.synthetic.main.activity_quizzes.*
 
 
 class ActivityListQuizzes : AppCompatActivity() {
 
     var mp : ArrayList<Int> = ArrayList()
 
+    var list = ArrayList<ModelQuizRow>();
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        var self = this;
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_quizzes)
 
-        mp.add(R.drawable.avatar);
-        mp.add(R.drawable.boy);
-        mp.add(R.drawable.education);
-        mp.add(R.drawable.man);
-        mp.add(R.drawable.people);
+        mp.add(R.drawable.avatar)
+        mp.add(R.drawable.boy)
+        mp.add(R.drawable.education)
+        mp.add(R.drawable.man)
+        mp.add(R.drawable.people)
 
-        var listView = findViewById<ListView>(R.id.list_quizzes);
 
-        var list = mutableListOf<ModelQuizRow>();
+        Logger.addLogAdapter(AndroidLogAdapter())
 
-        list.add(ModelQuizRow("¿Qué expresa esta formula? e = mc²", mp.get(0)))
+        val apolloClient = ApolloClient
+            .builder()
+            .serverUrl("http://127.0.0.1:5000/api/graphql")
+            .build()
 
-        list.add(ModelQuizRow("¿Qué expresa esta formula? e = mc²", mp.get(1)))
-
-        list.add(ModelQuizRow("¿Qué expresa esta formula? e = mc²", mp.get(2)))
-
-        list.add(ModelQuizRow("¿Qué expresa esta formula? e = mc²", mp.get(3)))
-
-        listView.adapter = AdapterQuizzes(this, R.layout.row_quiz, list)
+        var listView = findViewById<ListView>(R.id.list_quizzes)
 
         listView.setOnItemClickListener{parent: AdapterView<*>, view: View, position: Int, id: Long ->
-            Toast.makeText(this@ActivityListQuizzes, "you has clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(this@ActivityListQuizzes, "you has clicked" , Toast.LENGTH_LONG).show()
+
+            val intent = Intent(this@ActivityListQuizzes, ActivityQuizzes::class.java)
+            intent.putExtra("id", "5eab0281fe7b80a0896249c8")
+            startActivity(intent);
         }
+
+        apolloClient.query(
+            SearchQuestionsQuery.builder().build()
+        ).enqueue(
+            object: ApolloCall.Callback<SearchQuestionsQuery.Data>() {
+                override fun onFailure(e: ApolloException) {
+                    Logger.d(e.localizedMessage);
+                }
+
+                override fun onResponse(response: Response<SearchQuestionsQuery.Data>) {
+
+                    this@ActivityListQuizzes.runOnUiThread(java.lang.Runnable {
+                        var index = 0;
+
+                        for(item in response.data()?.SearchQuestions!!.iterator()) {
+                            list.add(ModelQuizRow(item.statement, mp.get( (index % mp.size) )))
+                            index++;
+                        }
+
+                        listView.adapter = AdapterQuizzes(self, R.layout.row_quiz, list)
+                    })
+
+                }
+            }
+        )
     }
 }

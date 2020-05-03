@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class AdapterQuizzes (var ctx:Context, var src: Int, var items: List<ModelQuizRow>) : ArrayAdapter<ModelQuizRow>(ctx, src, items) {
+class AdapterQuizzes (var ctx:Context, var src: Int, var items: ArrayList<ModelQuizRow>) : ArrayAdapter<ModelQuizRow>(ctx, src, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater:LayoutInflater = LayoutInflater.from(ctx);
@@ -22,5 +22,14 @@ class AdapterQuizzes (var ctx:Context, var src: Int, var items: List<ModelQuizRo
         titleView.text = myItem.title;
 
         return view
+    }
+
+    fun update(newItems:  List<ModelQuizRow>) {
+
+        for(itm in newItems) {
+            this.items.add(itm);
+        }
+
+        notifyDataSetChanged()
     }
 }
