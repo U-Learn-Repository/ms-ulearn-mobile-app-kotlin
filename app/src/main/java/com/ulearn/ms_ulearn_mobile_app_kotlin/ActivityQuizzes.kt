@@ -25,7 +25,7 @@ class ActivityQuizzes : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://127.0.0.1:5000/api/graphql")
+            .serverUrl("http://54.159.72.1:5000/api/graphql")
             .build()
 
 

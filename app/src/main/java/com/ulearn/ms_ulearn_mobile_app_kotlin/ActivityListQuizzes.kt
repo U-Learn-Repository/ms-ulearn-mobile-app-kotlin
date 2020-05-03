@@ -25,6 +25,7 @@ class ActivityListQuizzes : AppCompatActivity() {
     var mp : ArrayList<Int> = ArrayList()
 
     var list = ArrayList<ModelQuizRow>();
+    var dataID = ArrayList<String>();
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,16 +45,15 @@ class ActivityListQuizzes : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://127.0.0.1:5000/api/graphql")
+            .serverUrl("http://54.159.72.1:5000/api/graphql")
             .build()
 
         var listView = findViewById<ListView>(R.id.list_quizzes)
 
         listView.setOnItemClickListener{parent: AdapterView<*>, view: View, position: Int, id: Long ->
             Toast.makeText(this@ActivityListQuizzes, "you has clicked" , Toast.LENGTH_LONG).show()
-
             val intent = Intent(this@ActivityListQuizzes, ActivityQuizzes::class.java)
-            intent.putExtra("id", "5eab0281fe7b80a0896249c8")
+            intent.putExtra("id", dataID.get(position))
             startActivity(intent);
         }
 
@@ -72,6 +72,7 @@ class ActivityListQuizzes : AppCompatActivity() {
 
                         for(item in response.data()?.SearchQuestions!!.iterator()) {
                             list.add(ModelQuizRow(item.statement, mp.get( (index % mp.size) )))
+                            dataID.add(item.id)
                             index++;
                         }
 
