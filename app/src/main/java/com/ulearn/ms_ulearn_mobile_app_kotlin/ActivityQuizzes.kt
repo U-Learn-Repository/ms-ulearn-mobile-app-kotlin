@@ -76,9 +76,11 @@ class ActivityQuizzes : AppCompatActivity() {
             disable();
         }
 
+        var id = intent.getStringExtra("id");
+
 
         apolloClient.query(
-            SearchQuery.builder().id("5eab0281fe7b80a0896249c8").build()
+            SearchQuery.builder().id(id).build()
         ).enqueue(
             object: ApolloCall.Callback<SearchQuery.Data>() {
                 override fun onFailure(e: ApolloException) {
