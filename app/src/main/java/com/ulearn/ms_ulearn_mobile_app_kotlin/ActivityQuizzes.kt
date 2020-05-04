@@ -25,7 +25,7 @@ class ActivityQuizzes : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://127.0.0.1:5000/api/graphql")
+            .serverUrl("http://54.159.72.1:5000/api/graphql")
             .build()
 
 
@@ -76,9 +76,11 @@ class ActivityQuizzes : AppCompatActivity() {
             disable();
         }
 
+        var id = intent.getStringExtra("id");
+
 
         apolloClient.query(
-            SearchQuery.builder().id("5eab0281fe7b80a0896249c8").build()
+            SearchQuery.builder().id(id).build()
         ).enqueue(
             object: ApolloCall.Callback<SearchQuery.Data>() {
                 override fun onFailure(e: ApolloException) {
