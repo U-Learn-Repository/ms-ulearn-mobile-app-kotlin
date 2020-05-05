@@ -9,16 +9,16 @@
     >
 
     <Button
-        android:id="@+id/btn_go_quiz"
+        android:id="@+id/btn_go_course"
         android:layout_width="283dp"
         android:layout_height="63dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="584dp"
+        android:layout_marginTop="376dp"
         android:layout_marginEnd="68dp"
         android:layout_marginRight="68dp"
         android:background="#FFFFFF"
-        android:text="Login"
+        android:text="Ir a cursos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,36 +34,11 @@
         android:layout_marginEnd="115dp"
         android:layout_marginRight="115dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_go_quiz"
+        app:layout_constraintBottom_toTopOf="@+id/btn_go_course"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.586"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.57"
         app:srcCompat="@mipmap/ulearn" />
-
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Username"
-        android:textColor="#F4F4F4"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:text="Password"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_go_quiz"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

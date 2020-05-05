@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 
-class AdapterQuizzes (var ctx:Context, var src: Int, var items: List<ModelQuizRow>) : ArrayAdapter<ModelQuizRow>(ctx, src, items) {
+class AdapterCourses (var ctx:Context, var src: Int, var items: ArrayList<ModelCoursesRow>) : ArrayAdapter<ModelCoursesRow>(ctx, src, items) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val layoutInflater:LayoutInflater = LayoutInflater.from(ctx);
@@ -16,11 +16,20 @@ class AdapterQuizzes (var ctx:Context, var src: Int, var items: List<ModelQuizRo
         val imageView:ImageView = view.findViewById(R.id.quiz_image);
         val titleView:TextView  = view.findViewById(R.id.row_title);
 
-        val myItem: ModelQuizRow = items[position];
+        val myItem: ModelCoursesRow = items[position];
 
         imageView.setImageDrawable(ctx.resources.getDrawable(myItem.img));
         titleView.text = myItem.title;
 
         return view
+    }
+
+    fun update(newItems:  List<ModelCoursesRow>) {
+
+        for(itm in newItems) {
+            this.items.add(itm);
+        }
+
+        notifyDataSetChanged()
     }
 }

@@ -1,5 +1,5 @@
-query listarCursos(){
-  listarCursos() {
+query SearchQuery{
+  listarCursos {
     idCurso
     nombre
 	categoria
@@ -7,4 +7,3 @@ query listarCursos(){
     idProfesor
   }
 }
-
