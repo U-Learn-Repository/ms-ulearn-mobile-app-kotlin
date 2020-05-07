@@ -1,0 +1,10 @@
+
+query SearchQuery2{
+  listarCursos {
+    idCurso
+    nombre
+	categoria
+    duracion
+    idProfesor
+  }
+}
