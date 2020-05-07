@@ -45,7 +45,7 @@ class ActivityListQuizzes : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://54.159.72.1:5000/api/graphql")
+            .serverUrl("http://52.3.187.50:5000/api/graphql")
             .build()
 
         var listView = findViewById<ListView>(R.id.list_quizzes)
