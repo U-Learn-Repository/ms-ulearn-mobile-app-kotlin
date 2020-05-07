@@ -69,11 +69,10 @@ class ActivityListQuizzes : AppCompatActivity() {
 
                     this@ActivityListQuizzes.runOnUiThread(java.lang.Runnable {
                         var index = 0;
-                        var size = response.data()?.listarCursos?.size!!;
-                        //System.out.println(response.data()?.listarCursos?.get(0)?.nombre)
-                        for (item in response.data()?.listarCursos!!.iterator() ) {
-                            list.add(ModelCoursesRow(item.nombre.toString()+" | "+ item.categoria.toString() +" | " +item.duracion.toString() +" minutes", mp.get( (index % mp.size) )))
-                            dataID.add(index.toString());
+
+                        for(item in response.data()?.SearchQuestions!!.iterator()) {
+                            list.add(ModelQuizRow(item.statement, mp.get( (index % mp.size) )))
+                            dataID.add(item.id)
                             index++;
                         }
 
