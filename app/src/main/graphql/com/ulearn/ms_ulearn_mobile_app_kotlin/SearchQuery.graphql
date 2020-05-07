@@ -1,0 +1,32 @@
+query SearchQuery($id: String!) {
+    SearchQuestion(id: $id) {
+        id
+        statement
+        score
+        answers {
+            context
+            is_correct
+        }
+    }
+}
+query SearchQuery2{
+  listarCursos {
+    idCurso
+    nombre
+	categoria
+    duracion
+    idProfesor
+  }
+}
+
+query SearchQuestions {
+    SearchQuestions {
+        id
+        statement
+        score
+        answers {
+            context
+            is_correct
+        }
+    }
+}
