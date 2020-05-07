@@ -1,4 +1,4 @@
-query SearchQuery{
+query SearchQuery2{
   listarCursos {
     idCurso
     nombre

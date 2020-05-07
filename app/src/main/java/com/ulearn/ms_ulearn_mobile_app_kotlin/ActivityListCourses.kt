@@ -54,14 +54,14 @@ class ActivityListCourses : AppCompatActivity() {
         }
 
         apolloClient.query(
-            SearchQuery.builder().build()
+                SearchQuery2Query.builder().build()
         ).enqueue(
-            object: ApolloCall.Callback<SearchQuery.Data>() {
+            object: ApolloCall.Callback<SearchQuery2Query.Data>() {
                 override fun onFailure(e: ApolloException) {
                     Logger.d(e.localizedMessage);
                 }
 
-                override fun onResponse(response: Response<SearchQuery.Data>) {
+                override fun onResponse(response: Response<SearchQuery2Query.Data>) {
 
                     this@ActivityListCourses.runOnUiThread(java.lang.Runnable {
                         var index = 0;

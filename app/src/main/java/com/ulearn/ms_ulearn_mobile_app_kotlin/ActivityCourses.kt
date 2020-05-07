@@ -34,14 +34,14 @@ class ActivityCourses : AppCompatActivity() {
         var id = intent.getStringExtra("id");
 
         apolloClient.query(
-            SearchQuery.builder().build()
+            SearchQuery2Query.builder().build()
         ).enqueue(
-            object: ApolloCall.Callback<SearchQuery.Data>() {
+            object: ApolloCall.Callback<SearchQuery2Query.Data>() {
                 override fun onFailure(e: ApolloException) {
                     Logger.d(e.localizedMessage);
                 }
 
-                override fun onResponse(response: Response<SearchQuery.Data>) {
+                override fun onResponse(response: Response<SearchQuery2Query.Data>) {
                     Logger.d(response.data().toString())
 
                     statement.text =response.data()?.listarCursos?.get(id.toInt())?.nombre.toString();
