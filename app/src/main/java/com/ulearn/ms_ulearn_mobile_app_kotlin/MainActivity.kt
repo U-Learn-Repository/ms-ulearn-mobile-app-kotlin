@@ -20,11 +20,20 @@ class MainActivity : AppCompatActivity() {
         btn_go_quiz.setOnClickListener {
             goQuizzes();
         }
+        btn_go_course.setOnClickListener {
+            goCourses();
+        }
     }
 
     private fun goQuizzes() {
         // val intent = Intent(this, ActivityQuizzes::class.java);
         val intent = Intent(this, ActivityListQuizzes::class.java)
+        startActivity(intent);
+    }
+
+    private fun goCourses() {
+        // val intent = Intent(this, ActivityQuizzes::class.java);
+        val intent = Intent(this, ActivityListCourses::class.java)
         startActivity(intent);
     }
 }

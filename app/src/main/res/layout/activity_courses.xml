@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityQuizzes"
+    tools:context=".ActivityCourses"
     android:background="#000000"
     >
 
@@ -13,8 +13,7 @@
         android:id="@+id/statement"
         android:layout_width="348dp"
         android:layout_height="103dp"
-        android:layout_marginTop="74dp"
-        android:layout_marginBottom="559dp"
+        android:layout_marginBottom="468dp"
         android:background="#FF6100"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -27,8 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -52,71 +50,37 @@
         app:layout_constraintGuide_begin="20dp" />
 
     <Button
-        android:id="@+id/answer_1"
+        android:id="@+id/field_1"
         android:layout_width="358dp"
         android:layout_height="71dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="59dp"
-        android:layout_marginEnd="33dp"
-        android:layout_marginRight="33dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="92dp"
         android:background="#FFFFFF"
         android:text="Not Found"
-        app:layout_constraintBottom_toTopOf="@+id/answer_2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/statement" />
 
     <Button
-        android:id="@+id/answer_2"
-        android:layout_width="358dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="10dp"
+        android:id="@+id/field_2"
+        android:layout_width="363dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="80dp"
         android:background="#FFFFFF"
         android:text="Not Found"
-        app:layout_constraintBottom_toTopOf="@+id/answer_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_1" />
-
-    <Button
-        android:id="@+id/answer_3"
-        android:layout_width="358dp"
-        android:layout_height="71dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="10dp"
-        android:background="#FFFFFF"
-        android:text="Not Found"
-        app:layout_constraintBottom_toTopOf="@+id/answer_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_2" />
+        app:layout_constraintTop_toBottomOf="@+id/field_1" />
 
     <Button
-        android:id="@+id/answer_4"
+        android:id="@+id/field_3"
         android:layout_width="358dp"
         android:layout_height="71dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="44dp"
         android:background="#FFFFFF"
         android:text="Not Found"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_3" />
+        app:layout_constraintTop_toBottomOf="@+id/field_2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
