@@ -4,14 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityListCourses">
+    tools:context=".ActivityListQuizzes">
 
     <ListView
-        android:id="@+id/list_courses"
+        android:id="@+id/list_quizzes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="false"
-        android:clipChildren="false"
-        android:clipToPadding="false" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>
