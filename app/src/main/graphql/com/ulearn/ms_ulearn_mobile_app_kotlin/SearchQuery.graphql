@@ -9,6 +9,15 @@ query SearchQuery($id: String!) {
         }
     }
 }
+query SearchQuery2{
+  listarCursos {
+    idCurso
+    nombre
+	categoria
+    duracion
+    idProfesor
+  }
+}
 
 query SearchQuestions {
     SearchQuestions {
