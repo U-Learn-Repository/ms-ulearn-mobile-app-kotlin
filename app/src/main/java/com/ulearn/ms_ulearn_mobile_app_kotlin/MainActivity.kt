@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
         btn_go_course.setOnClickListener {
             goCourses();
         }
+
+        // val intent = Intent(this, Login::class.java)
+        // startActivity(intent);
     }
 
     private fun goQuizzes() {
