@@ -11,32 +11,35 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.internal.Internal
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        btn_go_quiz.setOnClickListener {
-            goQuizzes();
+
+        val filePath = "authentication.txt"
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+
+        if(file.isFile) {
+            val tk = file.readText()
+            Logger.d("Token -> ".plus(tk))
+
+            if(tk!= null && tk.toString().length >= 36) {
+                val intent = Intent(this, MainPanel::class.java)
+                startActivity(intent);
+            } else {
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent);
+            }
+        } else {
+            file.createNewFile()
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent);
         }
-        btn_go_course.setOnClickListener {
-            goCourses();
-        }
 
-        // val intent = Intent(this, Login::class.java)
-        // startActivity(intent);
     }
 
-    private fun goQuizzes() {
-        // val intent = Intent(this, ActivityQuizzes::class.java);
-        val intent = Intent(this, ActivityListQuizzes::class.java)
-        startActivity(intent);
-    }
-
-    private fun goCourses() {
-        // val intent = Intent(this, ActivityQuizzes::class.java);
-        val intent = Intent(this, ActivityListCourses::class.java)
-        startActivity(intent);
-    }
 }

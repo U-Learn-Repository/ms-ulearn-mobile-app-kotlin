@@ -4,9 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".MainPanel"
     android:background="#000000"
     >
+
+    <Button
+        android:id="@+id/btn_go_quiz_panel"
+        android:layout_width="283dp"
+        android:layout_height="63dp"
+        android:background="#FFFFFF"
+        android:text="Resolver Quiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_go_course_panel"
+        android:layout_width="283dp"
+        android:layout_height="63dp"
+        android:background="#FFFFFF"
+        android:text="Ir a cursos disponibles"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_quiz_panel" />
 
     <ImageView
         android:id="@+id/imageViewPanel"

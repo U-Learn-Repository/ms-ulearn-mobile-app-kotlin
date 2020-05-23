@@ -63,6 +63,11 @@ class ActivityListCourses : AppCompatActivity() {
 
                     override fun onResponse(response: Response<SearchQuery2Query.Data>) {
 
+                        if(response.data()?.listarCursos == null) {
+
+                            return;
+                        }
+
                         this@ActivityListCourses.runOnUiThread(java.lang.Runnable {
                             var index = 0;
                             var size = response.data()?.listarCursos?.size!!;

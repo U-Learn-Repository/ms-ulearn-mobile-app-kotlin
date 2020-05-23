@@ -67,6 +67,11 @@ class ActivityListQuizzes : AppCompatActivity() {
 
                 override fun onResponse(response: Response<SearchQuestionsQuery.Data>) {
 
+                    if(response.data()?.SearchQuestions == null) {
+
+                        return;
+                    }
+
                     this@ActivityListQuizzes.runOnUiThread(java.lang.Runnable {
                         var index = 0;
 

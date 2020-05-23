@@ -21,3 +21,16 @@ query SearchQuestions {
         }
     }
 }
+
+mutation Authentication($username: String!, $password: String!) {
+    login(credentials: {
+        username: $username,
+        password: $password,
+        grant_type: "password",
+    }) {
+        access_token
+        token_type
+        expires_in
+        scope
+    }
+}
