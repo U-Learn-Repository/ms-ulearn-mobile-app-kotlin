@@ -28,7 +28,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_go_quiz_panel" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_quiz_panel"
+        app:layout_constraintVertical_bias="0.313" />
+
+    <Button
+        android:id="@+id/btn_go_logout_panel"
+        android:layout_width="283dp"
+        android:layout_height="63dp"
+        android:background="#FFFFFF"
+        android:text="Log Out"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_go_quiz_panel"
+        app:layout_constraintVertical_bias="0.878" />
 
     <ImageView
         android:id="@+id/imageViewPanel"

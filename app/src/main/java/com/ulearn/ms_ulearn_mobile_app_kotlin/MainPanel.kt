@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main_panel.*
+import java.io.File
 
 class MainPanel : AppCompatActivity() {
 
@@ -17,6 +18,9 @@ class MainPanel : AppCompatActivity() {
         btn_go_course_panel.setOnClickListener {
             goCourses();
         }
+        btn_go_logout_panel.setOnClickListener {
+            logOut();
+        }
     }
 
 
@@ -27,6 +31,16 @@ class MainPanel : AppCompatActivity() {
 
     private fun goCourses() {
         val intent = Intent(this, ActivityListCourses::class.java)
+        startActivity(intent);
+    }
+
+    private fun logOut() {
+        val filePath = "authentication.txt"
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+        file.writeText("");
+
+        val intent = Intent(this, Login::class.java)
         startActivity(intent);
     }
 }

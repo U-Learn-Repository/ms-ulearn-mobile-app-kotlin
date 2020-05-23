@@ -68,7 +68,6 @@ class ActivityListQuizzes : AppCompatActivity() {
                 override fun onResponse(response: Response<SearchQuestionsQuery.Data>) {
 
                     if(response.data()?.SearchQuestions == null) {
-
                         return;
                     }
 
