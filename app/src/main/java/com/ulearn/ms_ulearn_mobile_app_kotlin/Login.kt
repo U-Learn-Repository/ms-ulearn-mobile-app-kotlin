@@ -2,8 +2,6 @@ package com.ulearn.ms_ulearn_mobile_app_kotlin
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.apollographql.apollo.ApolloCall
 import com.apollographql.apollo.ApolloClient
@@ -12,12 +10,13 @@ import com.apollographql.apollo.exception.ApolloException
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_login.*
-import okhttp3.internal.Internal
 import java.io.File
 
 class Login : AppCompatActivity() {
 
     val self : Login = this;
+
+    var url_api : String = Configuration.url_api;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,7 +26,7 @@ class Login : AppCompatActivity() {
 
         val apolloClient = ApolloClient
             .builder()
-            .serverUrl("http://52.3.187.50:5000/api/graphql")
+            .serverUrl(url_api)
             .build()
 
         submit.setOnClickListener {
@@ -56,16 +55,10 @@ class Login : AppCompatActivity() {
 
 
                         this@Login.runOnUiThread(java.lang.Runnable {
-                            val filePath = "authentication.txt"
+                            val filePath = Configuration.file_auth;
 
                             val file = File(getExternalFilesDir(filePath), filePath)
                             file.writeText("".plus(response?.data()?.login?.access_token?.toString()))
-
-                            /*val tk = file.readText()
-
-                            Logger.d("Token -> ".plus(tk))*/
-
-
 
                             val intent = Intent(self, MainPanel::class.java)
                             startActivity(intent);
@@ -73,10 +66,6 @@ class Login : AppCompatActivity() {
                     }
                 }
             )
-
-            //submit.text = username.text.toString().plus(password.text.toString()).toString()
-
-            //Logger.d("Inside")
         }
 
     }

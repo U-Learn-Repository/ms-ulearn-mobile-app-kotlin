@@ -9,12 +9,15 @@ import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_quizzes.*
+import okhttp3.OkHttpClient
+import java.io.File
 
 class ActivityQuizzes : AppCompatActivity() {
 
     var hm : HashMap<String, Boolean?> = HashMap<String, Boolean?> ()
+
+    var url_api : String = Configuration.url_api;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +26,13 @@ class ActivityQuizzes : AppCompatActivity() {
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        val apolloClient = ApolloClient
-            .builder()
-            .serverUrl("http://52.3.187.50:5000/api/graphql")
-            .build()
+        val filePath = Configuration.file_auth;
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+
+        val token = file.readText().toString()
+
+        val apolloClient = setupApollo(token);
 
 
         answer_1.setOnClickListener {
@@ -124,5 +130,25 @@ class ActivityQuizzes : AppCompatActivity() {
         answer_3.isClickable = false
         answer_4.isEnabled = false
         answer_4.isClickable = false
+    }
+
+    private fun setupApollo(token: String): ApolloClient {
+        val okHttp = OkHttpClient
+            .Builder()
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val builder = original.newBuilder().method(original.method(),original.body())
+                builder.addHeader("Authorization"
+                    , "Bearer $token"
+                )
+                chain.proceed(builder.build())
+            }
+            .build()
+
+
+        return ApolloClient.builder()
+            .serverUrl(url_api)
+            .okHttpClient(okHttp)
+            .build()
     }
 }
