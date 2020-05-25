@@ -55,6 +55,7 @@ class ActivityListCourses : AppCompatActivity() {
         listView.setOnItemClickListener{parent: AdapterView<*>, view: View, position: Int, id: Long ->
             Toast.makeText(this@ActivityListCourses, "you has clicked" , Toast.LENGTH_LONG).show()
             val intent = Intent(this@ActivityListCourses, ActivityCourses::class.java)
+
             intent.putExtra("id", dataID.get(position))
             //  System.out.println(dataID);
             startActivity(intent);
@@ -71,7 +72,6 @@ class ActivityListCourses : AppCompatActivity() {
                     override fun onResponse(response: Response<SearchQuery2Query.Data>) {
 
                         if(response.data()?.listarCursos == null) {
-
                             return;
                         }
 
@@ -119,12 +119,12 @@ class ActivityListCourses : AppCompatActivity() {
             .build()
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         val filePath = Configuration.file_auth;
 
         val file = File(getExternalFilesDir(filePath), filePath)
         file.writeText("");
 
         super.onDestroy()
-    }
+    }*/
 }

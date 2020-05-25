@@ -85,6 +85,8 @@ class ActivityQuizzes : AppCompatActivity() {
         var id = intent.getStringExtra("id");
 
 
+        Logger.d(id);
+
         apolloClient.query(
             SearchQuery.builder().id(id).build()
         ).enqueue(
@@ -152,12 +154,14 @@ class ActivityQuizzes : AppCompatActivity() {
             .build()
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         val filePath = Configuration.file_auth;
 
         val file = File(getExternalFilesDir(filePath), filePath)
         file.writeText("");
 
+        Logger.d("Destroid")
+
         super.onDestroy()
-    }
+    }*/
 }
