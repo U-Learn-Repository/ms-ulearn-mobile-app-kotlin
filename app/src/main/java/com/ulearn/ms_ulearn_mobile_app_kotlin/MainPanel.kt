@@ -35,7 +35,7 @@ class MainPanel : AppCompatActivity() {
     }
 
     private fun logOut() {
-        val filePath = "authentication.txt"
+        val filePath = Configuration.file_auth;
 
         val file = File(getExternalFilesDir(filePath), filePath)
         file.writeText("");
@@ -43,4 +43,14 @@ class MainPanel : AppCompatActivity() {
         val intent = Intent(this, Login::class.java)
         startActivity(intent);
     }
+
+    override fun onDestroy() {
+        val filePath = Configuration.file_auth;
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+        file.writeText("");
+
+        super.onDestroy()
+    }
+
 }
