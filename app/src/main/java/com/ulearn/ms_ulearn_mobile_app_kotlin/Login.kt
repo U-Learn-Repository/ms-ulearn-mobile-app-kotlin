@@ -24,12 +24,16 @@ class Login : AppCompatActivity() {
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
+
+
         val apolloClient = ApolloClient
             .builder()
             .serverUrl(url_api)
             .build()
 
         submit.setOnClickListener {
+
+            Logger.d(username.text.toString().plus(" ").plus(password.text.toString()));
 
             apolloClient.mutate(
                 AuthenticationMutation
@@ -40,11 +44,12 @@ class Login : AppCompatActivity() {
             ).enqueue(
                 object: ApolloCall.Callback<AuthenticationMutation.Data>() {
                     override fun onFailure(e: ApolloException) {
+                        Logger.d(e.toString())
                         Logger.d("Usuario o Contraseña Incorrecta o revise su conexión a internet")
                     }
 
                     override fun onResponse(response: Response<AuthenticationMutation.Data>) {
-
+                        Logger.d(response?.data()?.toString())
                         if(response?.data()?.login?.access_token == null) {
                             Logger.d("Usuario o Contraseña Incorrecta")
                             // Toast.makeText(applicationContext, "Usuario o Contraseña Incorrecta" , Toast.LENGTH_LONG).show()
@@ -70,12 +75,12 @@ class Login : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         val filePath = Configuration.file_auth;
 
         val file = File(getExternalFilesDir(filePath), filePath)
         file.writeText("");
 
         super.onDestroy()
-    }
+    }*/
 }

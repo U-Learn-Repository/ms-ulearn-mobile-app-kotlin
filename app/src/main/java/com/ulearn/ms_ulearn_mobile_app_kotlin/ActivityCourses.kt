@@ -97,12 +97,12 @@ class ActivityCourses : AppCompatActivity() {
             .build()
     }
 
-    override fun onDestroy() {
+    /*override fun onDestroy() {
         val filePath = Configuration.file_auth;
 
         val file = File(getExternalFilesDir(filePath), filePath)
         file.writeText("");
 
         super.onDestroy()
-    }
+    }*/
 }
