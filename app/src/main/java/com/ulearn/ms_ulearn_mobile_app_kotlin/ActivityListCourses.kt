@@ -13,6 +13,8 @@ import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.exception.ApolloException
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import okhttp3.OkHttpClient
+import java.io.File
 
 
 class ActivityListCourses : AppCompatActivity() {
@@ -22,12 +24,16 @@ class ActivityListCourses : AppCompatActivity() {
     var list = ArrayList<ModelCoursesRow>();
     var dataID = ArrayList<String>();
 
+    var url_api : String = Configuration.url_api;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         var self = this;
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_courses)
+
+        Logger.addLogAdapter(AndroidLogAdapter())
 
         mp.add(R.drawable.avatar)
         mp.add(R.drawable.boy)
@@ -36,18 +42,20 @@ class ActivityListCourses : AppCompatActivity() {
         mp.add(R.drawable.people)
 
 
-        Logger.addLogAdapter(AndroidLogAdapter())
+        val filePath = Configuration.file_auth;
 
-        val apolloClient = ApolloClient
-                .builder()
-                .serverUrl("http://192.168.0.6:5000/api/graphql")
-                .build()
+        val file = File(getExternalFilesDir(filePath), filePath)
+
+        val token = file.readText().toString()
+
+        val apolloClient = setupApollo(token);
 
         var listView = findViewById<ListView>(R.id.list_courses)
 
         listView.setOnItemClickListener{parent: AdapterView<*>, view: View, position: Int, id: Long ->
             Toast.makeText(this@ActivityListCourses, "you has clicked" , Toast.LENGTH_LONG).show()
             val intent = Intent(this@ActivityListCourses, ActivityCourses::class.java)
+
             intent.putExtra("id", dataID.get(position))
             //  System.out.println(dataID);
             startActivity(intent);
@@ -62,6 +70,10 @@ class ActivityListCourses : AppCompatActivity() {
                     }
 
                     override fun onResponse(response: Response<SearchQuery2Query.Data>) {
+
+                        if(response.data()?.listarCursos == null) {
+                            return;
+                        }
 
                         this@ActivityListCourses.runOnUiThread(java.lang.Runnable {
                             var index = 0;
@@ -85,4 +97,34 @@ class ActivityListCourses : AppCompatActivity() {
                 }
         )
     }
+
+
+    private fun setupApollo(token: String): ApolloClient {
+        val okHttp = OkHttpClient
+            .Builder()
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val builder = original.newBuilder().method(original.method(),original.body())
+                builder.addHeader("Authorization"
+                    , "Bearer $token"
+                )
+                chain.proceed(builder.build())
+            }
+            .build()
+
+
+        return ApolloClient.builder()
+            .serverUrl(url_api)
+            .okHttpClient(okHttp)
+            .build()
+    }
+
+    /*override fun onDestroy() {
+        val filePath = Configuration.file_auth;
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+        file.writeText("");
+
+        super.onDestroy()
+    }*/
 }

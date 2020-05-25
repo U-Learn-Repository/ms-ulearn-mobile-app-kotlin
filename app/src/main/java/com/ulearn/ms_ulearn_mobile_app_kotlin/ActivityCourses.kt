@@ -10,10 +10,14 @@ import com.apollographql.apollo.exception.ApolloException
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_courses.*
+import okhttp3.OkHttpClient
+import java.io.File
 
 class ActivityCourses : AppCompatActivity() {
 
     var hm : HashMap<String, Boolean?> = HashMap<String, Boolean?> ()
+
+    var url_api : String = Configuration.url_api;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +26,13 @@ class ActivityCourses : AppCompatActivity() {
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
-        val apolloClient = ApolloClient
-                .builder()
-                .serverUrl("http://192.168.0.6:5000/api/graphql")
-                .build()
+        val filePath = Configuration.file_auth;
 
+        val file = File(getExternalFilesDir(filePath), filePath)
 
+        val token = file.readText().toString()
 
-
+        val apolloClient = setupApollo(token);
 
         var id = intent.getStringExtra("id");
 
@@ -72,4 +75,34 @@ class ActivityCourses : AppCompatActivity() {
         field_3.isEnabled = false
         field_3.isClickable = false
     }
+
+
+    private fun setupApollo(token: String): ApolloClient {
+        val okHttp = OkHttpClient
+            .Builder()
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val builder = original.newBuilder().method(original.method(),original.body())
+                builder.addHeader("Authorization"
+                    , "Bearer $token"
+                )
+                chain.proceed(builder.build())
+            }
+            .build()
+
+
+        return ApolloClient.builder()
+            .serverUrl(url_api)
+            .okHttpClient(okHttp)
+            .build()
+    }
+
+    /*override fun onDestroy() {
+        val filePath = Configuration.file_auth;
+
+        val file = File(getExternalFilesDir(filePath), filePath)
+        file.writeText("");
+
+        super.onDestroy()
+    }*/
 }
