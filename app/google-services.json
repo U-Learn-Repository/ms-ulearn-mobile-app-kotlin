@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "337020238261",
+    "firebase_url": "https://ulearn-messaging.firebaseio.com",
+    "project_id": "ulearn-messaging",
+    "storage_bucket": "ulearn-messaging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337020238261:android:b6201fa84d33e1ec9001fc",
+        "android_client_info": {
+          "package_name": "com.ulearn.ms_ulearn_mobile_app_kotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337020238261-d2rinn61o8fc04h315ovmqfktnj4caoj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm_Ut1ThCn3bUIK5j1uCaKRbNWyzpBl_k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337020238261-d2rinn61o8fc04h315ovmqfktnj4caoj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
