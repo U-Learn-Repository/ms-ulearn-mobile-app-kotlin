@@ -32,13 +32,4 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
-    /*override fun onDestroy() {
-        val filePath = Configuration.file_auth;
-
-        val file = File(getExternalFilesDir(filePath), filePath)
-        file.writeText("");
-
-        super.onDestroy()
-    }*/
 }

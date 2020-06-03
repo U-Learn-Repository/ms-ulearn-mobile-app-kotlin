@@ -24,8 +24,6 @@ class Login : AppCompatActivity() {
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
-
-
         val apolloClient = ApolloClient
             .builder()
             .serverUrl(url_api)
